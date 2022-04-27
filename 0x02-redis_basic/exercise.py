@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from ctypes import Union
+from typing import Union
 from uuid import uuid4
 import redis
 
