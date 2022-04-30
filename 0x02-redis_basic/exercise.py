@@ -15,6 +15,7 @@ def count_calls(method: Callable) -> Callable:
         Counts the number of times a method is called.
     '''
     key = method.__qualname__
+
     @wraps(method)
     def wrapper(self, *args, **kwargs):
         '''
@@ -23,6 +24,7 @@ def count_calls(method: Callable) -> Callable:
         self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     """ Decorator to store the history of inputs and
@@ -68,7 +70,6 @@ def replay(fn: Callable):
             o = ""
 
         print(f'{f_name}(*{i}) -> {o}')
-
 
 
 class Cache:
